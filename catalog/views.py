@@ -14,13 +14,17 @@ def index(request):
     num_instances_available = BookInstance.objects.filter(status__exact='a').count()
 
     # The 'all()' is implied by default.
-    num_authors = Author.objects.count()
+    num_authors = Author.objects.count()  # The 'all()' is implied by default.
+    num_visits = request.session.get('num_visits', 0)
+    num_visits += 1
+    request.session['num_visits'] = num_visits
 
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
         'num_authors': num_authors,
+        'num_visits': num_visits,
     }
 
     # Render the HTML template index.html with the data in the context variable
@@ -37,3 +41,16 @@ class BookDetailView(generic.DetailView):
 class BookListView(generic.ListView):
     model = Book
     paginate_by = 2
+
+from .models import Author
+
+class AuthorListView(generic.ListView):
+    model = Author
+    template_name = 'catalog/author_list.html'
+    context_object_name = 'authors'
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
+    template_name = 'catalog/author_detail.html'
+    context_object_name = 'author'
+    pk_url_kwarg = 'id'

@@ -1,0 +1,9 @@
+<h1>Author List</h1>
+
+<ul>
+    {% for author in authors %}
+        <li><a href="{{ author.get_absolute_url }}">{{ author }} / {{ author.date_of_birth }} / {{ author.date_of_death }}</a> </li>
+    {% empty %}
+        <li>No authors available.</li>
+    {% endfor %}
+</ul>
