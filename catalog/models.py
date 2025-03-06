@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.db import models
+from datetime import date
 
 # Create your models here.
 
@@ -98,6 +100,10 @@ from django.conf import settings  # Required to assign User as a borrower
 
 
 class BookInstance(models.Model):
+    @property
+    def is_overdue(self):
+        """Determines if the book is overdue based on due date and current date."""
+        return bool(self.due_back and date.today() > self.due_back)
     """Model representing a specific copy of a book (i.e. that can be borrowed from the library)."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,
                           help_text="Unique ID for this particular book across whole library")
@@ -156,3 +162,5 @@ class Author(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.last_name}, {self.first_name}'
+    
+    
