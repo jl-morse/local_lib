@@ -38,7 +38,12 @@ SECRET_KEY = 'django-insecure-h*f)zm)c=6j7#(%3*i4)1cba4^*uw#!+d+0hactno%#)+0e&-o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["seal-app-rxq2g.ondigitalocean.app", "lib.mydomain.com"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "seal-app-rxq2g.ondigitalocean.app",
+    "lib.mydomain.com",
+]
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
 
