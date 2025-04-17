@@ -38,8 +38,7 @@ SECRET_KEY = 'django-insecure-h*f)zm)c=6j7#(%3*i4)1cba4^*uw#!+d+0hactno%#)+0e&-o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
-
+ALLOWED_HOSTS = ["seal-app-rxq2g.ondigitalocean.app", "lib.mydomain.com"]
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
 
@@ -90,7 +89,6 @@ WSGI_APPLICATION = 'locallibrary.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 
 if DEVELOPMENT_MODE is True:
     DATABASES = {
